@@ -2,10 +2,11 @@ import { Container } from "./container";
 import { Logo } from "./logo";
 
 export const Header = () => {
+  // add responsive on mobile: add mobile menu icon
   return (
     <nav className="z-50 border-b">
       <Container>
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-center h-20 space-x-20">
           <div className="flex">
             <Logo />
           </div>
