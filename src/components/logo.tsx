@@ -5,7 +5,7 @@ export const Logo = () => {
     <img
       src={LogoImage}
       alt="Little Lemon Restaurant"
-      className="h-14 w-auto "
+      className="h-14 w-auto"
     />
   );
 };
