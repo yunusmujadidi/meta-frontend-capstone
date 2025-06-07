@@ -1,4 +1,4 @@
-import { CardMenu } from "./card";
+import { CardMenu } from "./menu-card";
 import { Container } from "./container";
 import { Button } from "./ui/button";
 import Card1 from "@/assets/card-1.png";
@@ -29,18 +29,18 @@ const weeklySpecials = [
   },
 ];
 
-export const FeatureSection = () => {
+export const FeaturedSection = () => {
   return (
     <div className="bg-white py-10">
       <Container>
         <div className="flex flex-col space-y-10 justify-center">
-          <div className="flex flex-col md:flex-row justify-between items-center ">
+          <div className="flex w-full flex-col md:flex-row justify-between items-center ">
             <div>
               <h1 className="text-4xl font-bold">This week's specials!</h1>
             </div>
             <Button variant="lemon">Order Online</Button>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-center">
             {weeklySpecials.map((special) => (
               <CardMenu
                 key={special.title}

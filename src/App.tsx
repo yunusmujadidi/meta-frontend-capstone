@@ -1,6 +1,7 @@
-import { FeatureSection } from "./components/feature";
+import { FeaturedSection } from "./components/feature";
 import { Header } from "./components/header";
 import { HeroSection } from "./components/hero";
+import { TestimonialSection } from "./components/testimonial";
 import { Layout } from "./Layout";
 
 function App() {
@@ -9,8 +10,9 @@ function App() {
       <Header />
       <HeroSection />
       <div className="mt-30">
-        <FeatureSection />
+        <FeaturedSection />
       </div>
+      <TestimonialSection />
     </Layout>
   );
 }

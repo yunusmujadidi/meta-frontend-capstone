@@ -15,7 +15,7 @@ export const CardMenu = ({
   description,
 }: CardMenuProps) => {
   return (
-    <Card className="flex flex-col justify-between rounded-t-lg overflow-hidden bg-[#EDEFEE]">
+    <Card className="w-full max-w-sm py-0 flex flex-col justify-between rounded-t-lg overflow-hidden bg-[#EDEFEE]">
       <div>
         <img src={imgSrc} alt={title} className="w-full h-60 object-cover" />
         <div className="p-6 space-y-6">
