@@ -1,25 +1,13 @@
+import { contactItems, navigationItems, socialMediaItems } from "@/lib/const";
 import footerLogo from "../assets/footer-logo.png";
 import { Container } from "./container";
 
 export const Footer = () => {
-  const navigationItems = [
-    "Home",
-    "About",
-    "Menu",
-    "Order Online",
-    "Reservation",
-    "Login",
-  ];
-
-  const contactItems = ["Address", "Phone Number", "Email"];
-
-  const socialMediaItems = ["Facebook", "Instagram", "Twitter"];
-
   return (
-    <footer className="py-16 bg-[#495E57] text-white">
+    <footer className="py-10 md:py-16 bg-[#495E57] text-white">
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="flex justify-center md:justify-start">
+          <div className="hidden md:flex md:justify-start ">
             <img
               className="object-cover"
               src={footerLogo}
@@ -31,7 +19,7 @@ export const Footer = () => {
             <h1 className="mb-6 text-lg font-bold text-[#F4CE14]">
               Doormat Navigation
             </h1>
-            <ul className="space-y-3">
+            <ul className="space-y-3 ">
               {navigationItems.map((item, index) => (
                 <li
                   key={index}

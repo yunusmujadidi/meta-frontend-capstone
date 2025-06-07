@@ -20,7 +20,7 @@ const reviews = [
   },
   {
     star: 5 as const,
-    title: "Highly Recommended",
+    title: "Recommended",
     review: "I would highly recommend this to anyone. Top-notch quality.",
     avatarSrc: "https://randomuser.me/api/portraits/men/62.jpg",
     name: "Agus Wijaya",
@@ -38,11 +38,11 @@ const reviews = [
 
 export const TestimonialSection = () => {
   return (
-    <div className="bg-[#495E57] py-20">
+    <div className="bg-[#495E57] py-10 md:py-20">
       <Container>
-        <div className="flex flex-col items-center space-y-20">
+        <div className="flex flex-col items-center space-y-10 md:space-y-20">
           <div className="text-center">
-            <h1 className="text-5xl font-bold text-white">
+            <h1 className="text-4xl md:text-5xl font-bold text-white">
               Our customers love us!
             </h1>
           </div>

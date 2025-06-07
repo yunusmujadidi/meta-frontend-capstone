@@ -1,36 +1,54 @@
 import { Container } from "./container";
 import { Logo } from "./logo";
+import { Menu } from "lucide-react";
+import { useState } from "react";
+import { Button } from "./ui/button";
+import { navigationItems } from "@/lib/const";
 
 export const Header = () => {
-  // add responsive on mobile: add mobile menu icon
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
-    <nav className="z-50 border-b sticky">
+    <nav className="z-50 border-b sticky top-0 bg-white shadow-md">
       <Container>
-        <div className="flex items-center justify-between h-20 space-x-20">
-          <div className="flex">
+        <div className="flex items-center justify-between h-20">
+          <div className="flex items-center">
             <Logo />
           </div>
-          <ul className="flex space-x-8">
-            <li className="hover:text-primary/70 cursor-pointer transition-all duration-300">
-              Home
-            </li>
-            <li className="hover:text-primary/70 cursor-pointer transition-all duration-300">
-              About
-            </li>
-            <li className="hover:text-primary/70 cursor-pointer transition-all duration-300">
-              Menu
-            </li>
-            <li className="hover:text-primary/70 cursor-pointer transition-all duration-300">
-              Reservations
-            </li>
-            <li className="hover:text-primary/70 cursor-pointer transition-all duration-300">
-              Order Online
-            </li>
-            <li className="hover:text-primary/70 cursor-pointer transition-all duration-300">
-              Login
-            </li>
+          <ul className="hidden md:flex space-x-8">
+            {navigationItems.map((item) => (
+              <li
+                key={item}
+                className="hover:text-primary/70 cursor-pointer transition-all duration-300"
+              >
+                {item}
+              </li>
+            ))}
           </ul>
+          <div className="md:hidden">
+            <Button onClick={toggleMenu} variant="ghost" size="icon">
+              <Menu className="h-6 w-6" />
+            </Button>
+          </div>
         </div>
+        {isMenuOpen && (
+          <div className="md:hidden">
+            <ul className="flex flex-col space-y-4 py-4">
+              {navigationItems.map((item) => (
+                <li
+                  key={item}
+                  className="hover:text-primary/70 cursor-pointer transition-all duration-300"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </Container>
     </nav>
   );
