@@ -4,6 +4,13 @@ import { Menu } from "lucide-react";
 import { useState } from "react";
 import { Button } from "./ui/button";
 import { navigationItems } from "@/lib/const";
+import { Link } from "@tanstack/react-router";
+
+const toPath = (item: string) => {
+  if (item === "Home") return "/";
+  if (item === "Order Online") return "/order";
+  return `/${item.toLowerCase().replace(" ", "-")}`;
+};
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,11 +28,13 @@ export const Header = () => {
           </div>
           <ul className="hidden md:flex space-x-8">
             {navigationItems.map((item) => (
-              <li
-                key={item}
-                className="hover:text-primary/70 cursor-pointer transition-all duration-300"
-              >
-                {item}
+              <li key={item}>
+                <Link
+                  className="hover:text-primary/70 cursor-pointer transition-all duration-300"
+                  to={toPath(item)}
+                >
+                  {item}
+                </Link>
               </li>
             ))}
           </ul>
@@ -39,11 +48,13 @@ export const Header = () => {
           <div className="md:hidden">
             <ul className="flex flex-col space-y-4 py-4">
               {navigationItems.map((item) => (
-                <li
-                  key={item}
-                  className="hover:text-primary/70 cursor-pointer transition-all duration-300"
-                >
-                  {item}
+                <li key={item}>
+                  <Link
+                    className="hover:text-primary/70 cursor-pointer transition-all duration-300"
+                    to={toPath(item)}
+                  >
+                    {item}
+                  </Link>
                 </li>
               ))}
             </ul>

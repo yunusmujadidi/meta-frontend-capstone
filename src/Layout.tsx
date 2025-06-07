@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Header } from "./components/header";
+import { Header } from "./components/navbar";
 import { Footer } from "./components/footer";
 
 export const Layout = ({ children }: { children: ReactNode }) => {
