@@ -27,14 +27,14 @@ export const ReviewCard = ({
   date,
 }: ReviewCardProps) => {
   return (
-    <Card className="space-y-3">
+    <Card className="flex h-full flex-col">
       <CardHeader className="flex gap-4">
         {Array.from({ length: star }, () => (
           <Star fill="#111" strokeWidth={0} />
         ))}
       </CardHeader>
-      <CardContent>
-        <CardTitle className="text-2xl">{title}</CardTitle>
+      <CardContent className="flex-grow">
+        <CardTitle className="text-xl">{title}</CardTitle>
         <CardDescription className="text-muted-foreground">
           {review}
         </CardDescription>
