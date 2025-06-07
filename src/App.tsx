@@ -1,4 +1,5 @@
-import { FeaturedSection } from "./components/feature";
+import { AboutSection } from "./components/about";
+import { FeaturedSection } from "./components/featured";
 import { Header } from "./components/header";
 import { HeroSection } from "./components/hero";
 import { TestimonialSection } from "./components/testimonial";
@@ -9,10 +10,11 @@ function App() {
     <Layout>
       <Header />
       <HeroSection />
-      <div className="mt-30">
-        <FeaturedSection />
-      </div>
+
+      <FeaturedSection />
+
       <TestimonialSection />
+      <AboutSection />
     </Layout>
   );
 }

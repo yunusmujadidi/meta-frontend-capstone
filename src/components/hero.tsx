@@ -6,7 +6,7 @@ export const HeroSection = () => {
   return (
     <section className="bg-[#495E57]">
       <Container>
-        <div className="flex flex-col md:flex-row w-full items-center justify-center space-y-8 md:space-y-0 md:space-x-8">
+        <div className="flex flex-col md:flex-row w-full items-center justify-center md:space-y-0 md:space-x-8">
           <div className="space-y-6 flex-col text-center md:text-left py-16">
             <div>
               <h1 className="text-[64px] text-[#F4CE14] font-medium">
@@ -15,10 +15,9 @@ export const HeroSection = () => {
               <h2 className="text-[40px] text-white">Jakarta</h2>
             </div>
             <div>
-              <p className="text-white leading-relaxed">
-                We are a family owned Mediterranean <br />
-                restaurant, focused on traditional recipes <br />
-                served with a modern twist.
+              <p className="text-white leading-relaxed max-w-lg">
+                We are a family owned Mediterranean restaurant, focused on
+                traditional recipes served with a modern twist.
               </p>
             </div>
             <Button className="shadow-2xl" variant="lemon">

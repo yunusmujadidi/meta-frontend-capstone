@@ -29,11 +29,9 @@ export const ReviewCard = ({
   return (
     <Card className="space-y-3">
       <CardHeader className="flex gap-4">
-        {Array(star)
-          .fill(0)
-          .map((_, index) => (
-            <Star key={index} className="size-4" />
-          ))}
+        {Array.from({ length: star }, () => (
+          <Star fill="#111" strokeWidth={0} />
+        ))}
       </CardHeader>
       <CardContent>
         <CardTitle className="text-2xl">{title}</CardTitle>

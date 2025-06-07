@@ -31,12 +31,14 @@ const weeklySpecials = [
 
 export const FeaturedSection = () => {
   return (
-    <div className="bg-white py-10">
+    <div className="bg-white py-10 mt-30">
       <Container>
         <div className="flex flex-col space-y-10 justify-center">
           <div className="flex w-full flex-col md:flex-row justify-between items-center ">
             <div>
-              <h1 className="text-4xl font-bold">This week's specials!</h1>
+              <h1 className="text-[64px] tracking-tight">
+                This week's specials!
+              </h1>
             </div>
             <Button variant="lemon">Order Online</Button>
           </div>
