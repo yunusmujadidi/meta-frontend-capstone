@@ -5,12 +5,7 @@ import { useState } from "react";
 import { Button } from "./ui/button";
 import { navigationItems } from "@/lib/const";
 import { Link } from "@tanstack/react-router";
-
-const toPath = (item: string) => {
-  if (item === "Home") return "/";
-  if (item === "Order Online") return "/order";
-  return `/${item.toLowerCase().replace(" ", "-")}`;
-};
+import { toPath } from "@/lib/utils";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

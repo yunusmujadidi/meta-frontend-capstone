@@ -1,6 +1,8 @@
 import { contactItems, navigationItems, socialMediaItems } from "@/lib/const";
 import footerLogo from "../assets/footer-logo.png";
 import { Container } from "./container";
+import { toPath } from "@/lib/utils";
+import { Link } from "@tanstack/react-router";
 
 export const Footer = () => {
   return (
@@ -8,12 +10,14 @@ export const Footer = () => {
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="hidden md:flex md:justify-start ">
-            <img
-              className="object-cover"
-              src={footerLogo}
-              alt="Little Lemon Logo"
-              width={180}
-            />
+            <Link to="/">
+              <img
+                className="object-cover"
+                src={footerLogo}
+                alt="Little Lemon Logo"
+                width={180}
+              />
+            </Link>
           </div>
           <div>
             <h1 className="mb-6 text-lg font-bold text-[#F4CE14]">
@@ -25,7 +29,12 @@ export const Footer = () => {
                   key={index}
                   className="text-white font-medium cursor-pointer hover:text-[#F4CE14] transition-colors"
                 >
-                  {item}
+                  <Link
+                    className="hover:text-primary/70 cursor-pointer transition-all duration-300"
+                    to={toPath(item)}
+                  >
+                    {item}
+                  </Link>
                 </li>
               ))}
             </ul>

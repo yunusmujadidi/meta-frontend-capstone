@@ -4,6 +4,7 @@ import { Button } from "./ui/button";
 import Card1 from "@/assets/card-1.png";
 import Card2 from "@/assets/card-2.png";
 import Card3 from "@/assets/card-3.png";
+import { Link } from "@tanstack/react-router";
 
 const weeklySpecials = [
   {
@@ -40,7 +41,9 @@ export const FeaturedSection = () => {
                 This week's specials!
               </h1>
             </div>
-            <Button variant="lemon">Order Online</Button>
+            <Button className="shadow-2xl" variant="lemon">
+              <Link to="/reservation">Order Online</Link>
+            </Button>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-center">
             {weeklySpecials.map((special) => (

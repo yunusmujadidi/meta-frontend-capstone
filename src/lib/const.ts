@@ -1,5 +1,4 @@
 export const navigationItems = [
-  "Home",
   "About",
   "Menu",
   "Order Online",

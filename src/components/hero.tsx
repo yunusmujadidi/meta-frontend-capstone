@@ -1,6 +1,7 @@
 import { Container } from "./container";
 import { Button } from "./ui/button";
 import heroImage from "../assets/hero-img.png";
+import { Link } from "@tanstack/react-router";
 
 export const HeroSection = () => {
   return (
@@ -21,7 +22,7 @@ export const HeroSection = () => {
               </p>
             </div>
             <Button className="shadow-2xl" variant="lemon">
-              Reserve a Table
+              <Link to="/reservation">Reserve a Table</Link>
             </Button>
           </div>
 

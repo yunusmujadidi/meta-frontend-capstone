@@ -2,6 +2,7 @@ import { Container } from "./container";
 import { Button } from "./ui/button";
 import aboutImage1 from "../assets/about-1.png";
 import aboutImage2 from "../assets/about-2.png";
+import { Link } from "@tanstack/react-router";
 
 export const AboutSection = () => {
   return (
@@ -26,7 +27,7 @@ export const AboutSection = () => {
               </p>
             </div>
             <Button className="shadow-2xl" variant="lemon">
-              Reserve a Table
+              <Link to="/reservation">Reserve a Table</Link>
             </Button>
           </div>
 
