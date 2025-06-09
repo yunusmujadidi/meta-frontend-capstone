@@ -22,7 +22,12 @@ function BookingConfirmedComponent() {
               Thank you for your reservation at Little Lemon.
             </p>
             <p className="text-gray-600">We look forward to welcoming you!</p>
-            <Button variant="lemon" asChild className="mt-4">
+            <Button
+              variant="lemon"
+              asChild
+              className="mt-4"
+              aria-label="On Click"
+            >
               <Link to="/">Back to Home</Link>
             </Button>
           </CardContent>

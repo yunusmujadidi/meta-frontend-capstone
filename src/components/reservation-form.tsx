@@ -265,6 +265,7 @@ export const ReservationForm = ({
               variant="lemon"
               type="submit"
               className="w-full"
+              aria-label="On Click"
             >
               Make your reservation{" "}
               {isPending && (

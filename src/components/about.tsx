@@ -26,7 +26,11 @@ export const AboutSection = () => {
                 Little Lemon a beloved gathering place for Jakarta families.
               </p>
             </div>
-            <Button className="shadow-2xl" variant="lemon">
+            <Button
+              className="shadow-2xl"
+              variant="lemon"
+              aria-label="On Click"
+            >
               <Link to="/reservation">Reserve a Table</Link>
             </Button>
           </div>

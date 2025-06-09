@@ -41,7 +41,11 @@ export const FeaturedSection = () => {
                 This week's specials!
               </h1>
             </div>
-            <Button className="shadow-2xl" variant="lemon">
+            <Button
+              className="shadow-2xl"
+              variant="lemon"
+              aria-label="On Click"
+            >
               <Link to="/reservation">Order Online</Link>
             </Button>
           </div>
