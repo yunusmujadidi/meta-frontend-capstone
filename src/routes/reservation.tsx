@@ -27,6 +27,7 @@ function RouteComponent() {
     const isSubmitted = submitAPI(formData);
     if (isSubmitted) {
       navigate({ to: "/booking-confirmed" });
+      toast.success("Booking succesfully");
     } else {
       toast.error("Something went wrong");
     }

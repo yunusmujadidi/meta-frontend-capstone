@@ -44,7 +44,10 @@ const ReservationFormSchema = z.object({
   date: z.string().min(1, "Date is required"),
   time: z.string().min(1, "Please select a valid time."),
   guest: z
-    .number()
+    .number({
+      required_error: "Must book for at least 1 guest",
+      invalid_type_error: "Must book for at least 1 guest",
+    })
     .min(1, "Must book for at least 1 guest")
     .max(10, "Can't book more than 10 guest"),
   occasions: z.enum(occasions as [string, ...string[]], {
