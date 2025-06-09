@@ -14,6 +14,7 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as ReservationImport } from './routes/reservation'
 import { Route as OrderImport } from './routes/order'
 import { Route as MenuImport } from './routes/menu'
+import { Route as BookingConfirmedImport } from './routes/booking-confirmed'
 import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
 
@@ -34,6 +35,12 @@ const OrderRoute = OrderImport.update({
 const MenuRoute = MenuImport.update({
   id: '/menu',
   path: '/menu',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const BookingConfirmedRoute = BookingConfirmedImport.update({
+  id: '/booking-confirmed',
+  path: '/booking-confirmed',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -67,6 +74,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutImport
       parentRoute: typeof rootRoute
     }
+    '/booking-confirmed': {
+      id: '/booking-confirmed'
+      path: '/booking-confirmed'
+      fullPath: '/booking-confirmed'
+      preLoaderRoute: typeof BookingConfirmedImport
+      parentRoute: typeof rootRoute
+    }
     '/menu': {
       id: '/menu'
       path: '/menu'
@@ -96,6 +110,7 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/booking-confirmed': typeof BookingConfirmedRoute
   '/menu': typeof MenuRoute
   '/order': typeof OrderRoute
   '/reservation': typeof ReservationRoute
@@ -104,6 +119,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/booking-confirmed': typeof BookingConfirmedRoute
   '/menu': typeof MenuRoute
   '/order': typeof OrderRoute
   '/reservation': typeof ReservationRoute
@@ -113,6 +129,7 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/booking-confirmed': typeof BookingConfirmedRoute
   '/menu': typeof MenuRoute
   '/order': typeof OrderRoute
   '/reservation': typeof ReservationRoute
@@ -120,16 +137,36 @@ export interface FileRoutesById {
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/menu' | '/order' | '/reservation'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/booking-confirmed'
+    | '/menu'
+    | '/order'
+    | '/reservation'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/menu' | '/order' | '/reservation'
-  id: '__root__' | '/' | '/about' | '/menu' | '/order' | '/reservation'
+  to:
+    | '/'
+    | '/about'
+    | '/booking-confirmed'
+    | '/menu'
+    | '/order'
+    | '/reservation'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/booking-confirmed'
+    | '/menu'
+    | '/order'
+    | '/reservation'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  BookingConfirmedRoute: typeof BookingConfirmedRoute
   MenuRoute: typeof MenuRoute
   OrderRoute: typeof OrderRoute
   ReservationRoute: typeof ReservationRoute
@@ -138,6 +175,7 @@ export interface RootRouteChildren {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  BookingConfirmedRoute: BookingConfirmedRoute,
   MenuRoute: MenuRoute,
   OrderRoute: OrderRoute,
   ReservationRoute: ReservationRoute,
@@ -155,6 +193,7 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/about",
+        "/booking-confirmed",
         "/menu",
         "/order",
         "/reservation"
@@ -165,6 +204,9 @@ export const routeTree = rootRoute
     },
     "/about": {
       "filePath": "about.tsx"
+    },
+    "/booking-confirmed": {
+      "filePath": "booking-confirmed.tsx"
     },
     "/menu": {
       "filePath": "menu.tsx"

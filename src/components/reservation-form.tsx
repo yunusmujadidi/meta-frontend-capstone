@@ -10,7 +10,7 @@ import {
   FormMessage,
 } from "./ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { occasions, reservationTime } from "@/lib/const";
+import { occasions } from "@/lib/const";
 import { Button } from "./ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { cn } from "@/lib/utils";
@@ -24,7 +24,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
-import { toast } from "sonner";
 import {
   Card,
   CardContent,
@@ -34,16 +33,16 @@ import {
 } from "./ui/card";
 import { Textarea } from "./ui/textarea";
 
+export type ReservationFormData = z.infer<typeof ReservationFormSchema>;
 interface ReservationFormProps {
   availableTimes: string[];
   dispatch: Dispatch<{ type: string; payload: string }>;
+  submitForm: (formData: ReservationFormData) => void;
 }
 
-const formSchema = z.object({
+const ReservationFormSchema = z.object({
   date: z.string().min(1, "Date is required"),
-  time: z.enum(reservationTime as [string, ...string[]], {
-    errorMap: () => ({ message: "Please select a valid time." }),
-  }),
+  time: z.string().min(1, "Please select a valid time."),
   guest: z
     .number()
     .min(1, "Must book for at least 1 guest")
@@ -57,12 +56,13 @@ const formSchema = z.object({
 export const ReservationForm = ({
   availableTimes,
   dispatch,
+  submitForm,
 }: ReservationFormProps) => {
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof ReservationFormSchema>>({
+    resolver: zodResolver(ReservationFormSchema),
     defaultValues: {
       date: "",
       time: "",
@@ -72,30 +72,10 @@ export const ReservationForm = ({
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) =>
+  const onSubmit = (values: z.infer<typeof ReservationFormSchema>) =>
     startTransition(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 5000));
-      {
-        const reservationData = {
-          date: format(new Date(values.date), "PPP"),
-          time: values.time,
-          guests: values.guest,
-          occasion: values.occasions,
-          notes: values.notes,
-        };
-
-        toast.success(
-          `Reservation confirmed for ${reservationData.date} at ${reservationData.time} for ${reservationData.guests} guest(s). Occasion: ${reservationData.occasion}`
-        );
-
-        form.reset({
-          date: "",
-          time: "",
-          guest: undefined,
-          occasions: "",
-          notes: "",
-        });
-      }
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+      submitForm(values);
     });
 
   return (

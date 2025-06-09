@@ -1,15 +1,12 @@
 import { render, screen } from "@testing-library/react";
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { ReservationForm } from "../components/reservation-form";
-import { reservationTime } from "../lib/const";
+import { initializeTimes, updateTimes } from "../routes/reservation";
+import { fetchAPI } from "../lib/api";
 
-const initializeTimes = () => {
-  return reservationTime;
-};
-
-const updateTimes = (state: string[]) => {
-  return state;
-};
+vi.mock("../lib/api", () => ({
+  fetchAPI: vi.fn(),
+}));
 
 describe("ReservationForm", () => {
   it("renders the BookingForm heading", () => {
@@ -23,24 +20,19 @@ describe("ReservationForm", () => {
 });
 
 describe("Time Functions", () => {
-  it("initializeTimes returns the correct expected value", () => {
+  it("initializeTimes returns a non-empty array", () => {
+    const expectedTimes = ["17:00", "18:00", "19:00"];
+    (fetchAPI as any).mockReturnValue(expectedTimes);
     const times = initializeTimes();
-
-    expect(times).toEqual([
-      "17:00",
-      "18:00",
-      "19:00",
-      "20:00",
-      "21:00",
-      "22:00",
-    ]);
+    expect(times).toEqual(expectedTimes);
   });
 
-  it("updateTimes returns the same value provided in state", () => {
+  it("updateTimes returns the value from fetchAPI", () => {
     const state = ["17:00", "18:00", "19:00"];
-
-    const result = updateTimes(state);
-
-    expect(result).toEqual(state);
+    const action = { type: "UPDATE_TIMES", payload: "2024-01-01" };
+    const expectedTimes = ["20:00", "21:00"];
+    (fetchAPI as any).mockReturnValue(expectedTimes);
+    const result = updateTimes(state, action);
+    expect(result).toEqual(expectedTimes);
   });
 });

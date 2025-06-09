@@ -1,29 +1,52 @@
 import { Container } from "@/components/container";
-import { ReservationForm } from "@/components/reservation-form";
-import { createFileRoute } from "@tanstack/react-router";
+import {
+  ReservationForm,
+  type ReservationFormData,
+} from "@/components/reservation-form";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { reservationTime } from "@/lib/const";
 import { useReducer } from "react";
+import { fetchAPI, submitAPI } from "@/lib/api";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/reservation")({
   component: RouteComponent,
 });
 
-const updateTimes = (state: string[]) => {
+const updateTimes = (
+  state: string[],
+  action: { type: string; payload: string }
+) => {
+  if (action.type === "UPDATE_TIMES") {
+    const selectedDate = new Date(action.payload);
+    return fetchAPI(selectedDate);
+  }
   return state;
 };
 
 const initializeTimes = () => {
-  return reservationTime;
+  const today = new Date();
+  return fetchAPI(today);
 };
 
 function RouteComponent() {
+  const navigate = useNavigate();
   const [availableTimes, dispatch] = useReducer(
     updateTimes,
     [],
     initializeTimes
   );
+
+  const submitForm = (formData: ReservationFormData) => {
+    const isSubmitted = submitAPI(formData);
+    if (isSubmitted) {
+      navigate({ to: "/booking-confirmed" });
+    } else {
+      toast.error("Something went wrong");
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Container>
@@ -42,6 +65,7 @@ function RouteComponent() {
             <ReservationForm
               availableTimes={availableTimes}
               dispatch={dispatch}
+              submitForm={submitForm}
             />
 
             <div className="space-y-8">
