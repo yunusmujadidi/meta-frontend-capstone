@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { useForm } from "react-hook-form";
-import { useState, useTransition } from "react";
+import { useState, useTransition, type Dispatch } from "react";
 import {
   Form,
   FormControl,
@@ -34,6 +34,11 @@ import {
 } from "./ui/card";
 import { Textarea } from "./ui/textarea";
 
+interface ReservationFormProps {
+  availableTimes: string[];
+  dispatch: Dispatch<{ type: string; payload: string }>;
+}
+
 const formSchema = z.object({
   date: z.string().min(1, "Date is required"),
   time: z.enum(reservationTime as [string, ...string[]], {
@@ -49,7 +54,10 @@ const formSchema = z.object({
   notes: z.string().optional(),
 });
 
-export const ReservationForm = () => {
+export const ReservationForm = ({
+  availableTimes,
+  dispatch,
+}: ReservationFormProps) => {
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
 
@@ -140,7 +148,14 @@ export const ReservationForm = () => {
                             field.value ? new Date(field.value) : undefined
                           }
                           onSelect={(date) => {
-                            field.onChange(date ? date.toISOString() : "");
+                            const newDate = date ? date.toISOString() : "";
+                            field.onChange(newDate);
+                            if (newDate) {
+                              dispatch({
+                                type: "UPDATE_TIMES",
+                                payload: newDate,
+                              });
+                            }
                             setIsDatePickerOpen(false);
                           }}
                           disabled={(date) => date < new Date()}
@@ -169,7 +184,7 @@ export const ReservationForm = () => {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {reservationTime.map((item) => {
+                        {availableTimes.map((item) => {
                           return (
                             <SelectItem key={item} value={item}>
                               {item}

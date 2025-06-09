@@ -3,12 +3,27 @@ import { ReservationForm } from "@/components/reservation-form";
 import { createFileRoute } from "@tanstack/react-router";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { reservationTime } from "@/lib/const";
+import { useReducer } from "react";
 
 export const Route = createFileRoute("/reservation")({
   component: RouteComponent,
 });
 
+const updateTimes = (state: string[]) => {
+  return state;
+};
+
+const initializeTimes = () => {
+  return reservationTime;
+};
+
 function RouteComponent() {
+  const [availableTimes, dispatch] = useReducer(
+    updateTimes,
+    [],
+    initializeTimes
+  );
   return (
     <div className="min-h-screen bg-gray-50">
       <Container>
@@ -24,7 +39,10 @@ function RouteComponent() {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto h-full">
-            <ReservationForm />
+            <ReservationForm
+              availableTimes={availableTimes}
+              dispatch={dispatch}
+            />
 
             <div className="space-y-8">
               <Card>
