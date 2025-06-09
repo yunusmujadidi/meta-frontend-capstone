@@ -7,28 +7,13 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useReducer } from "react";
-import { fetchAPI, submitAPI } from "@/lib/api";
+import { submitAPI } from "@/lib/api";
 import { toast } from "sonner";
+import { initializeTimes, updateTimes } from "@/lib/utils";
 
 export const Route = createFileRoute("/reservation")({
   component: RouteComponent,
 });
-
-const updateTimes = (
-  state: string[],
-  action: { type: string; payload: string }
-) => {
-  if (action.type === "UPDATE_TIMES") {
-    const selectedDate = new Date(action.payload);
-    return fetchAPI(selectedDate);
-  }
-  return state;
-};
-
-const initializeTimes = () => {
-  const today = new Date();
-  return fetchAPI(today);
-};
 
 function RouteComponent() {
   const navigate = useNavigate();
